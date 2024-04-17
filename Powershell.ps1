@@ -4,8 +4,8 @@ $username = Read-Host -Prompt "Enter your username"
 # Prompt the user to enter their password
 $password = Read-Host -Prompt "Enter your password" -AsSecureString
 
-# Convert the secure string password to plaintext
-$plaintextPassword = ConvertFrom-SecureString -SecureString $password
+# Convert the secure string password to plain text
+$plaintextPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($password))
 
 # Specify the file path where you want to save the credentials on the desktop
 $desktopPath = [System.IO.Path]::Combine($env:USERPROFILE, "Desktop")
